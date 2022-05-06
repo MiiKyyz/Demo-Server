@@ -1,0 +1,83 @@
+<Main_Server_Gemys>:
+
+    MDFloatLayout:
+
+        size: root.width, root.height
+
+        id: main_screen
+
+
+        MDLabel:
+            text: 'miky'
+            id: M
+            pos_hint: {'x':0.2, 'center_y': 0.2}
+            size_hint: (0.5,0.5)
+            font_size: 40
+
+
+
+
+        MDToolbar:
+            pos_hint: {'top':1}
+            title: 'Server Gemys'
+            id: toolbar
+            mg_bg_color: (0/255,0/255,200/255,1)
+            specific_text_color: (28/255,255/255,255/255,1)
+            left_action_items: [["Gemys Logo.png"]]
+            right_action_items: [['dots-vertical']]
+
+        MDNavigationRail:
+            id: rail
+            md_bg_color: (33/255,150/255,243/255,1)
+            use_hover_behavior: True
+            hover_bg: 0, 0, 0, .2
+            use_resizeable: True
+            size_hint: (None, None)
+
+            height: main_screen.height-toolbar.height
+            on_leave: rail.rail_state = 'close'
+            on_enter: rail.rail_state = 'open'
+
+            MDNavigationRailItem:
+                icon: 'baseball'
+                text: 'MLB'
+
+            MDNavigationRailItem:
+                icon: 'facebook'
+                text: 'FB'
+
+            MDNavigationRailItem:
+                icon: 'account'
+                text: 'Users:'
+                id: people
+
+
+
+        MDBoxLayout:
+            pos_hint: {'center_x':0.5, 'center_y':0.5}
+            size_hint: (0.5,0.5)
+            id: line_margin
+            rorder: 20
+            canvas.before:
+                Color:
+                    rgb: (28/255,255/255,255/255,1)
+
+                Line:
+                    rounded_rectangle: (self.pos[0], self.pos[1], self.size[0], self.size[1], self.rorder)
+                    width: 5
+
+            MDBoxLayout:
+                pos_hint: {'center_x':0.5, 'center_y':0.5}
+                size_hint: (0.5,1)
+                canvas.before:
+                    Color:
+                        rgb: (0/255,0/255,200/255,1)
+
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [20]
+
+                ScrollView:
+                    MDList:
+                        id: list_users
